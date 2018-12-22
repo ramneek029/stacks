@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+void towers(int, char, char, char);
+class fun
+{
+    int num;
+public:
+    int  get_num();
+    friend void towers(int num,char source, char dest, char aux);
+
+};
+
+int  fun::get_num()
+{
+    int num;
+
+    cout<<"Enter the number of disks : ";
+    cin>>num;
+    return num;
+
+}
+
+void towers(int num,char source, char dest, char aux)
+{
+
+    if (num == 1)
+    {
+        cout<<"move disk 1 from "<<source<<" to "<<dest<<endl;
+        return;
+    }
+    towers(num - 1, source, aux, dest);
+    cout<<"move disk "<<num<<"from "<<source<<" to "<<dest<<endl;
+
+    towers(num - 1, aux, dest, source);
+}
+
+int main()
+{    int d;
+    fun T;
+    d=T.get_num();
+    cout<<"sequence of moves"<<endl;
+    towers( d,'A', 'C', 'B');
+    return 0;
+}
+
